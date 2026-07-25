@@ -132,20 +132,20 @@ Introduce the physical model and derive the relevant equations. Define every sym
 
 For example:
 
-\[
+$$
 T = \frac{1}{f}
-\]
+$$
 
-\[
+$$
 \lambda = \frac{c}{f}
-\]
+$$
 
 where:
 
-- \(T\) is period in seconds
-- \(f\) is frequency in hertz
-- \(\lambda\) is wavelength in metres
-- \(c\) is propagation speed in metres per second
+- $T$ is period in seconds
+- $f$ is frequency in hertz
+- $\lambda$ is wavelength in metres
+- $c$ is propagation speed in metres per second
 
 ### 3. Hand calculation
 
