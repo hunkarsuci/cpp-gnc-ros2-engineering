@@ -1,3 +1,6 @@
+[![Notebook CI](https://github.com/hunkarsuci/rf-space-systems-lab/actions/workflows/notebook-ci.yml/badge.svg?branch=main)](https://github.com/hunkarsuci/rf-space-systems-lab/actions/workflows/notebook-ci.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/hunkarsuci/rf-space-systems-lab/blob/main/LICENSE)
+
 # Numbers, Units, and Scientific Notation
 
 This is the first lesson in the **Engineering Python** curriculum.
