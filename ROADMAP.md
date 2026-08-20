@@ -1,916 +1,511 @@
-# RF Space Systems Lab Roadmap
+# C++ & ROS 2 Engineering Roadmap
 
-This repository begins from first principles. It assumes no prior Python, RF, radar, satellite communications, satellite navigation, orbital-mechanics, or professional software-development experience.
+This roadmap starts from zero C++ assumptions and targets two connected outcomes:
 
-The repository will grow incrementally. Only the files and directories required for the current lesson or milestone should be created. Empty curriculum trees should not be added in advance.
+1. Become a capable modern C++ developer who can read, write, debug, and structure non-trivial software.
+2. Apply that foundation to ROS 2 robotics systems without treating framework syntax as magic.
 
----
-
-## Project mission
-
-Build a rigorous, reproducible engineering curriculum and software laboratory covering:
-
-- Engineering Python
-- Engineering mathematics
-- Signals and systems
-- RF fundamentals
-- Digital signal processing
-- Antennas and propagation
-- Radar
-- Orbital mechanics
-- Satellite communications
-- Satellite navigation
-- Integrated RF and space systems
-
-The long-term objective is to progress from elementary calculations to verified engineering simulations and portfolio-quality capstone projects.
+The repository remains engineering-oriented, but the active track is now C++ → ROS 2. Existing Python/RF material is preserved as legacy study material and may later be integrated into robotics, signal-processing, and simulation projects.
 
 ---
 
-## Core development rule
+## Learning philosophy
 
 ```text
-Learn the concept
+Understand the concept
         ↓
-Complete a hand calculation
+Build a memory/runtime mental model
         ↓
-Implement it clearly in Python
+Read unfamiliar code
         ↓
-Visualize or experiment with it
+Predict behavior
         ↓
-Verify the result
+Write from scratch
         ↓
-Move stable logic into reusable modules
+Debug broken code
         ↓
-Add automated tests
+Refactor and explain trade-offs
+        ↓
+Use the same idea inside ROS 2
 ```
 
-Notebooks are used for explanation and experimentation.
-
-Reusable Python modules are introduced only after the relevant programming concepts are understood.
-
-Tests are added when code becomes reusable or when a calculation requires regression protection.
+A lesson is complete only when the learner can explain the idea, use it independently, recognize typical bugs, and identify the same construct in real C++ or ROS 2 source code.
 
 ---
 
-## Starting point
-
-The repository initially contains only:
-
-```text
-rf-space-systems-lab/
-├── README.md
-└── ROADMAP.md
-```
-
-The next files and directories will be added one step at a time.
-
----
-
-# Phase 0 — Repository and development foundations
+# Phase 0 — Development environment
 
 ## Goal
 
-Prepare a clean learning environment and understand the minimum Git workflow required to preserve progress.
+Establish a reproducible Linux C++ development workflow before adding framework complexity.
 
 ## Topics
 
-- [ ] Confirm the repository name is `rf-space-systems-lab`
-- [ ] Confirm the repository description and topics
-- [ ] Install or verify Git
-- [ ] Install or verify Python
-- [ ] Understand the repository working directory
-- [ ] Understand `git status`
-- [ ] Understand staging and commits
-- [ ] Understand pushing changes to GitHub
-- [ ] Create and activate a virtual environment
-- [ ] Add a Python-focused `.gitignore`
-- [ ] Record the Python version used by the project
-
-## Initial repository structure
-
-```text
-rf-space-systems-lab/
-├── README.md
-├── ROADMAP.md
-└── .gitignore
-```
+- [ ] Confirm Linux distribution and version
+- [ ] Install GCC or Clang
+- [ ] Install GDB
+- [ ] Install CMake
+- [ ] Install Git
+- [ ] Configure VS Code or preferred IDE
+- [ ] Configure Jupyter-compatible C++ execution when practical
+- [ ] Compile and run a basic `.cpp` program from the terminal
+- [ ] Understand compiler warnings
+- [ ] Understand the edit → compile → run → debug loop
 
 ## Completion criteria
 
-- The repository can be cloned successfully.
-- A local virtual environment can be created and activated.
-- `git status` is understood and checked before every commit.
-- The virtual environment is not tracked by Git.
-- README and roadmap changes are committed with descriptive messages.
+- A C++ program can be compiled from the command line.
+- Breakpoints and variable inspection work in a debugger.
+- Notebook-style C++ cells can be used for early experiments if the selected environment supports them reliably.
 
-## Suggested commits
+---
 
-```text
-Define RF and space systems learning roadmap
-Add Python development ignore rules
-Document local development setup
+# Phase 1 — C++ Foundations
+
+## Goal
+
+Learn the language from first principles while building correct execution and memory mental models.
+
+## Module 1.1 — Program structure and fundamental types
+
+- [ ] `main`
+- [ ] statements and expressions
+- [ ] comments
+- [ ] `std::cout`
+- [ ] integers
+- [ ] floating-point types
+- [ ] booleans
+- [ ] characters
+- [ ] `std::string`
+- [ ] initialization styles
+- [ ] `const`
+- [ ] arithmetic, comparison, and logical operators
+- [ ] basic type conversions
+
+### Exercises
+
+- velocity, distance, and time calculations
+- battery threshold logic
+- unit conversion
+- numeric-output prediction
+
+---
+
+## Module 1.2 — Control flow
+
+- [ ] `if` / `else`
+- [ ] `switch`
+- [ ] `for`
+- [ ] `while`
+- [ ] range-based `for`
+- [ ] `break` and `continue`
+- [ ] nested control flow
+
+### Engineering applications
+
+- battery-state decisions
+- sensor-threshold checks
+- actuator command limits
+- simple state-machine logic
+
+---
+
+## Module 1.3 — Functions and scope
+
+- [ ] function declaration and definition
+- [ ] return types
+- [ ] parameters and arguments
+- [ ] `void`
+- [ ] local variables
+- [ ] scope
+- [ ] pass by value
+- [ ] pass by reference
+- [ ] pass by const reference
+- [ ] function overloading
+- [ ] default arguments where appropriate
+
+### Mastery examples
+
+```cpp
+double calculate_distance(double velocity, double time);
+
+void update_position(double& position, double velocity, double dt);
+
+void print_name(const std::string& name);
 ```
 
 ---
 
-# Phase 1 — Engineering Python from scratch
+# Phase 2 — Memory, Lifetime, and Core C++
 
-Python will be learned through engineering quantities and RF-related examples rather than through unrelated exercises.
+## Goal
 
-No reusable package is required at the beginning of this phase.
+Understand what C++ objects are, where they live, who owns them, and when they stop being valid.
 
-## Module 1.1 — Numbers, units, and scientific notation
+## Module 2.1 — References and pointers
 
-### Python concepts
+- [ ] addresses
+- [ ] `&` address-of operator
+- [ ] references
+- [ ] pointer variables
+- [ ] dereference operator `*`
+- [ ] `nullptr`
+- [ ] pointer versus reference semantics
+- [ ] pointer-to-const versus const-pointer
+- [ ] common pointer bugs
 
-- [ ] Integers
-- [ ] Floating-point numbers
-- [ ] Arithmetic operators
-- [ ] Operator precedence
-- [ ] Variable assignment
-- [ ] Scientific notation
-- [ ] Printing results
-- [ ] Basic comments
+## Module 2.2 — Stack, heap, and lifetime
 
-### Engineering concepts
+- [ ] automatic storage duration
+- [ ] dynamic storage duration
+- [ ] object lifetime
+- [ ] dangling pointers/references
+- [ ] why returning addresses of local variables is invalid
+- [ ] introductory `new` / `delete` for understanding legacy code
+- [ ] why RAII is preferred
 
-- [ ] Physical quantities and units
-- [ ] SI base and derived units
-- [ ] Metric prefixes
-- [ ] Frequency in hertz
-- [ ] Time and period
-- [ ] Distance
-- [ ] Power
-- [ ] Unit conversion
-- [ ] Dimensional consistency
+## Module 2.3 — Arrays, strings, and vectors
 
-### First lesson
+- [ ] C-style arrays for language understanding
+- [ ] `std::array`
+- [ ] `std::string`
+- [ ] `std::vector`
+- [ ] indexing
+- [ ] bounds awareness
+- [ ] iteration
+- [ ] references to container elements
+
+---
+
+# Phase 3 — Object-Oriented C++
+
+## Goal
+
+Design and reason about stateful components that will later map naturally to ROS 2 nodes and system components.
+
+## Module 3.1 — Structures and classes
+
+- [ ] `struct`
+- [ ] `class`
+- [ ] objects
+- [ ] public/private/protected
+- [ ] data members
+- [ ] member functions
+- [ ] constructors
+- [ ] initializer lists
+- [ ] `this`
+- [ ] `const` member functions
+- [ ] encapsulation
+- [ ] composition
+
+## Module 3.2 — Destruction and object semantics
+
+- [ ] destructors
+- [ ] object lifetime inside classes
+- [ ] copy construction
+- [ ] copy assignment
+- [ ] move construction
+- [ ] move assignment
+- [ ] Rule of Zero
+- [ ] Rule of Three/Five as explanatory models
+
+## Module 3.3 — Inheritance and polymorphism
+
+- [ ] base and derived classes
+- [ ] virtual functions
+- [ ] `override`
+- [ ] pure virtual functions
+- [ ] abstract interfaces
+- [ ] virtual destructors
+- [ ] composition versus inheritance
+
+---
+
+# Phase 4 — Modern C++ and STL
+
+## Goal
+
+Move from language syntax to idiomatic, maintainable C++.
+
+## Module 4.1 — Standard library containers and algorithms
+
+- [ ] `std::vector`
+- [ ] `std::array`
+- [ ] `std::map`
+- [ ] `std::unordered_map`
+- [ ] `std::set`
+- [ ] iterators
+- [ ] range-based loops
+- [ ] `<algorithm>` fundamentals
+- [ ] `std::find`
+- [ ] `std::sort`
+- [ ] `std::transform`
+- [ ] `std::accumulate`
+
+## Module 4.2 — Type deduction and expressive syntax
+
+- [ ] `auto`
+- [ ] `using`
+- [ ] aliases
+- [ ] scoped enums
+- [ ] structured bindings
+- [ ] namespaces
+
+## Module 4.3 — RAII and smart pointers
+
+- [ ] resource ownership
+- [ ] RAII
+- [ ] `std::unique_ptr`
+- [ ] `std::make_unique`
+- [ ] `std::shared_ptr`
+- [ ] `std::make_shared`
+- [ ] reference counting
+- [ ] `std::weak_ptr`
+- [ ] ownership trade-offs
+
+## Module 4.4 — Lambdas and callbacks
+
+- [ ] lambda syntax
+- [ ] capture lists
+- [ ] `[this]`
+- [ ] capture by value/reference
+- [ ] callable objects
+- [ ] function pointers conceptually
+- [ ] `std::function`
+- [ ] callback design
+
+## Module 4.5 — Templates
+
+- [ ] function templates
+- [ ] class templates conceptually
+- [ ] template type parameters
+- [ ] generic APIs
+- [ ] reading nested template syntax
+
+---
+
+# Phase 5 — Professional C++ Development Workflow
+
+## Goal
+
+Build normal multi-file applications with the same tools and practices used by ROS 2 packages.
+
+## Module 5.1 — Compilation model
+
+- [ ] preprocessor
+- [ ] headers
+- [ ] declarations versus definitions
+- [ ] translation units
+- [ ] object files
+- [ ] linker
+- [ ] include guards / `#pragma once`
+- [ ] common linker errors
+
+## Module 5.2 — Project structure
 
 ```text
-00_engineering_python/
-└── 01_numbers_units_scientific_notation/
-    ├── README.md
-    └── lesson.ipynb
-```
-
-### First engineering exercises
-
-- Convert megahertz and gigahertz to hertz.
-- Convert kilometres to metres.
-- Calculate signal period from frequency.
-- Calculate free-space wavelength from frequency.
-- Compare wavelengths at different RF bands.
-- Identify incorrect unit combinations.
-
-### Completion criteria
-
-- Numerical values and units are kept conceptually separate.
-- Scientific notation is used correctly.
-- Results are checked manually.
-- Every output states its unit.
-- The notebook runs from top to bottom without errors.
-
----
-
-## Module 1.2 — Variables, expressions, and numeric types
-
-### Python concepts
-
-- [ ] Meaningful variable names
-- [ ] `int` and `float`
-- [ ] Type inspection
-- [ ] Assignment and reassignment
-- [ ] Formatted strings
-- [ ] Floating-point limitations
-
-### Engineering applications
-
-- Frequency, wavelength, and period tables
-- Power and bandwidth values
-- Unit-labelled output
-- Comparison of calculated and expected results
-
----
-
-## Module 1.3 — Functions
-
-### Python concepts
-
-- [ ] Function definitions
-- [ ] Parameters
-- [ ] Return values
-- [ ] Local variables
-- [ ] Docstrings
-- [ ] Type hints
-
-### Engineering applications
-
-Create simple functions for:
-
-- Frequency to period
-- Frequency to wavelength
-- Hertz to kilohertz, megahertz, and gigahertz
-- Watts to milliwatts
-- Metres to kilometres
-
-Reusable package files are not required yet. Functions may remain inside the lesson notebook until their purpose is understood.
-
----
-
-## Module 1.4 — Conditions, validation, and exceptions
-
-### Python concepts
-
-- [ ] Boolean expressions
-- [ ] Comparison operators
-- [ ] `if`, `elif`, and `else`
-- [ ] Input validation
-- [ ] Raising `ValueError`
-- [ ] Reading error messages
-
-### Engineering applications
-
-- Reject zero or negative frequency.
-- Reject negative distance.
-- Reject invalid bandwidth.
-- Warn when an input falls outside an intended model range.
-
----
-
-## Module 1.5 — Collections and loops
-
-### Python concepts
-
-- [ ] Lists
-- [ ] Tuples
-- [ ] Dictionaries
-- [ ] `for` loops
-- [ ] `while` loops
-- [ ] Accumulation
-- [ ] Simple tables
-
-### Engineering applications
-
-- Generate wavelength tables for common bands.
-- Calculate gains and losses through an RF chain.
-- Compare several frequencies or distances.
-- Store physical constants and unit labels.
-
----
-
-## Module 1.6 — NumPy arrays
-
-### Python concepts
-
-- [ ] Creating arrays
-- [ ] Array shapes
-- [ ] Indexing and slicing
-- [ ] Vectorized operations
-- [ ] Broadcasting
-- [ ] Basic numerical statistics
-
-### Engineering applications
-
-- Calculate wavelength over a frequency range.
-- Calculate path loss over a distance range.
-- Generate sampled sinusoidal signals.
-- Compare loop-based and vectorized calculations.
-
----
-
-## Module 1.7 — Visualization with Matplotlib
-
-### Python concepts
-
-- [ ] Creating a figure
-- [ ] Line plots
-- [ ] Markers
-- [ ] Axis labels
-- [ ] Titles
-- [ ] Legends
-- [ ] Linear and logarithmic axes
-- [ ] Saving figures
-
-### Engineering applications
-
-- Wavelength versus frequency
-- Period versus frequency
-- Power versus distance
-- Sampled sinusoidal signals
-
-Every axis must include the physical quantity and unit.
-
----
-
-## Module 1.8 — Complex numbers
-
-### Python concepts
-
-- [ ] Python complex values
-- [ ] Real and imaginary parts
-- [ ] Magnitude
-- [ ] Phase
-- [ ] Complex conjugate
-- [ ] Euler representation
-
-### Engineering applications
-
-- Phasors
-- IQ signals
-- Complex impedance
-- Sinusoidal amplitude and phase
-
----
-
-## Module 1.9 — Files and structured data
-
-### Python concepts
-
-- [ ] Reading text files
-- [ ] Writing text files
-- [ ] CSV data
-- [ ] Paths
-- [ ] Context managers
-- [ ] Basic data validation
-
-### Engineering applications
-
-- Save frequency tables.
-- Load measurement-like data.
-- Export calculated results.
-- Preserve experiment parameters.
-
----
-
-## Module 1.10 — Debugging and testing fundamentals
-
-### Python concepts
-
-- [ ] Reading tracebacks
-- [ ] Assertions
-- [ ] Small reproducible test cases
-- [ ] Floating-point tolerances
-- [ ] Introduction to `pytest`
-- [ ] Testing expected exceptions
-
-### Engineering applications
-
-Verify:
-
-- Known wavelength values
-- Unit conversions
-- Invalid-input handling
-- Limiting cases
-- Results from hand calculations
-
----
-
-## Module 1.11 — Modules and project packaging
-
-This module introduces reusable software only after variables, functions, validation, files, and testing have been studied.
-
-### Topics
-
-- [ ] Importing modules
-- [ ] Creating Python files
-- [ ] Package directories
-- [ ] `__init__.py`
-- [ ] Separating notebook code from reusable code
-- [ ] Creating `pyproject.toml`
-- [ ] Editable installation
-- [ ] Organizing tests
-
-### Repository structure introduced here
-
-```text
-rf-space-systems-lab/
-├── README.md
-├── ROADMAP.md
-├── .gitignore
-├── pyproject.toml
-├── 00_engineering_python/
+project/
+├── CMakeLists.txt
+├── include/
+│   └── project/
+│       └── robot.hpp
 ├── src/
-│   └── rf_space_systems/
-│       ├── __init__.py
-│       ├── constants.py
-│       └── units.py
+│   ├── robot.cpp
+│   └── main.cpp
 └── tests/
-    └── test_units.py
 ```
 
-## Phase 1 project — RF calculator
+## Module 5.3 — CMake
 
-```text
-projects/
-└── project01_rf_calculator/
-```
+- [ ] `cmake_minimum_required`
+- [ ] `project`
+- [ ] `add_executable`
+- [ ] `add_library`
+- [ ] `target_include_directories`
+- [ ] `target_link_libraries`
+- [ ] target-based CMake
+- [ ] out-of-source builds
 
-Initial capabilities:
+## Module 5.4 — Debugging and correctness
 
-- Frequency, period, and wavelength conversion
-- SI-prefix conversion
-- Power conversion between W, mW, dBW, and dBm
-- Thermal-noise calculation
-- Free-space path-loss calculation
-- Input validation
-- Automated tests
-- Clear documentation of units and assumptions
-
-## Phase 1 completion criteria
-
-- Python fundamentals are understood rather than copied mechanically.
-- At least one notebook exists for every completed module.
-- Hand calculations are used to verify Python results.
-- Reusable functions are moved into `src/` only when appropriate.
-- Automated tests cover reusable calculations.
-- The RF calculator works from a clean environment.
-- Git history contains descriptive, topic-based commits.
-
-## Suggested phase tag
-
-```bash
-git tag -a engineering-python-v1 -m "Complete engineering Python foundations"
-git push origin engineering-python-v1
-```
+- [ ] debugger workflow
+- [ ] breakpoints
+- [ ] stepping
+- [ ] stack traces
+- [ ] compiler warnings
+- [ ] sanitizers
+- [ ] assertions
+- [ ] unit-test fundamentals
+- [ ] undefined behavior awareness
 
 ---
 
-# Phase 2 — Engineering mathematics
+# Phase 6 — ROS 2 Foundations
 
 ## Goal
 
-Develop the mathematical tools required for RF, signal processing, radar, SatCom, SatNav, and orbital mechanics.
+Learn ROS 2 through already-understood C++ concepts.
 
-## Modules
+## Module 6.1 — ROS 2 architecture
 
-### 2.1 Algebra and logarithms
+- [ ] ROS graph
+- [ ] nodes
+- [ ] topics
+- [ ] messages
+- [ ] services
+- [ ] actions
+- [ ] parameters
+- [ ] discovery
+- [ ] DDS overview
 
-- [ ] Rearranging equations
-- [ ] Ratios and proportions
-- [ ] Powers and roots
-- [ ] Base-10 logarithms
-- [ ] Natural logarithms
-- [ ] Exponential relationships
-- [ ] Decibel preparation
+## Module 6.2 — Workspace and package workflow
 
-### 2.2 Trigonometry
+- [ ] ROS 2 workspace layout
+- [ ] package structure
+- [ ] `colcon`
+- [ ] environment sourcing
+- [ ] `ament_cmake`
+- [ ] dependencies
+- [ ] `package.xml`
+- [ ] ROS 2 CLI
 
-- [ ] Angles and radians
-- [ ] Sine, cosine, and tangent
-- [ ] Phase
-- [ ] Periodic functions
-- [ ] Basic geometry
-- [ ] Coordinate conversion
+## Module 6.3 — `rclcpp` nodes
 
-### 2.3 Complex numbers and phasors
+- [ ] deriving from `rclcpp::Node`
+- [ ] node constructors
+- [ ] logging
+- [ ] timers
+- [ ] publishers
+- [ ] subscribers
+- [ ] callback signatures
+- [ ] message shared pointers
 
-- [ ] Rectangular and polar forms
-- [ ] Euler's formula
-- [ ] Phasor arithmetic
-- [ ] Complex exponentials
-- [ ] Impedance preparation
+### C++ mapping exercise
 
-### 2.4 Calculus
+For code like:
 
-- [ ] Limits
-- [ ] Derivatives
-- [ ] Integrals
-- [ ] Differential equations
-- [ ] Physical interpretation of rate and accumulation
-
-### 2.5 Vectors and matrices
-
-- [ ] Vectors
-- [ ] Dot products
-- [ ] Cross products
-- [ ] Matrices
-- [ ] Linear systems
-- [ ] Coordinate transformations
-- [ ] Least-squares preparation
-
-### 2.6 Probability and statistics
-
-- [ ] Random variables
-- [ ] Probability distributions
-- [ ] Mean and variance
-- [ ] Gaussian noise
-- [ ] Covariance
-- [ ] Estimation fundamentals
-
-### 2.7 Numerical methods
-
-- [ ] Root finding
-- [ ] Numerical differentiation
-- [ ] Numerical integration
-- [ ] Interpolation
-- [ ] Numerical stability
-- [ ] Error and convergence
-
-## Phase 2 completion criteria
-
-- Mathematical derivations accompany implementations.
-- Units are checked during equation manipulation.
-- Numerical results are compared with analytical results when possible.
-- Matrix and probability concepts are ready for later estimation problems.
-
----
-
-# Phase 3 — Signals and systems
-
-## Modules
-
-- [ ] Signal classification
-- [ ] Continuous- and discrete-time signals
-- [ ] Sinusoids and complex exponentials
-- [ ] Amplitude, frequency, phase, and energy
-- [ ] Time shifting and scaling
-- [ ] Linear systems
-- [ ] Time invariance
-- [ ] Impulse response
-- [ ] Convolution
-- [ ] Sampling and reconstruction
-- [ ] Aliasing
-- [ ] Fourier series
-- [ ] Fourier transform
-- [ ] Frequency response
-
-## Phase project — Signal processing laboratory
-
-```text
-projects/
-└── project02_signal_processing_lab/
+```cpp
+subscription_ = this->create_subscription<sensor_msgs::msg::LaserScan>(
+    "/scan",
+    10,
+    [this](const sensor_msgs::msg::LaserScan::SharedPtr msg)
+    {
+        process_scan(*msg);
+    });
 ```
 
-Candidate capabilities:
+be able to explain:
 
-- Signal generation
-- Sampling experiments
-- Aliasing demonstrations
-- Convolution
-- Spectrum calculation
-- Time- and frequency-domain plots
+- [ ] member assignment
+- [ ] `this`
+- [ ] template argument
+- [ ] nested namespaces
+- [ ] lambda capture
+- [ ] callback parameter
+- [ ] shared ownership
+- [ ] pointer dereference
 
----
+## Module 6.4 — ROS 2 communication patterns
 
-# Phase 4 — RF fundamentals
-
-## Modules
-
-- [ ] Electromagnetic-wave concepts
-- [ ] Frequency, period, wavelength, and propagation speed
-- [ ] Power and energy
-- [ ] dB, dBW, and dBm
-- [ ] Gain and loss chains
-- [ ] Impedance
-- [ ] Reflection coefficient
-- [ ] Return loss
-- [ ] VSWR
-- [ ] Transmission-line fundamentals
-- [ ] Thermal noise
-- [ ] Noise temperature
-- [ ] Noise figure
-- [ ] Receiver sensitivity
-- [ ] Dynamic range
-- [ ] Compression and intermodulation fundamentals
-
-## Phase completion criteria
-
-- Decibel calculations are traceable to linear quantities.
-- RF-chain calculations state reference planes.
-- Noise calculations state temperature and bandwidth.
-- Impedance calculations use complex numbers correctly.
-- Models include assumptions and validity limits.
-
-## Suggested phase tag
-
-```bash
-git tag -a rf-foundations-v1 -m "Complete RF foundations"
-git push origin rf-foundations-v1
-```
+- [ ] publisher/subscriber design
+- [ ] service/client
+- [ ] actions
+- [ ] timers
+- [ ] parameters
+- [ ] QoS fundamentals
 
 ---
 
-# Phase 5 — Digital signal processing
-
-## Modules
-
-- [ ] Discrete sampling
-- [ ] Quantization
-- [ ] DFT and FFT
-- [ ] Spectral resolution
-- [ ] Leakage and windowing
-- [ ] FIR filters
-- [ ] IIR filters
-- [ ] Complex baseband
-- [ ] IQ representation
-- [ ] Digital modulation
-- [ ] Correlation
-- [ ] Matched filtering
-- [ ] Detection and estimation
-- [ ] Random processes and noise
-
-## Completion criteria
-
-- Time- and frequency-domain results agree.
-- Sampling assumptions are explicit.
-- Filter responses are verified.
-- FFT scaling and frequency axes are correct.
-- Complex baseband conventions are documented.
-
----
-
-# Phase 6 — Antennas and propagation
-
-## Modules
-
-- [ ] Radiation concepts
-- [ ] Gain and directivity
-- [ ] Radiation patterns
-- [ ] Beamwidth
-- [ ] Polarization
-- [ ] Effective aperture
-- [ ] Friis transmission equation
-- [ ] Free-space path loss
-- [ ] Atmospheric absorption
-- [ ] Rain attenuation
-- [ ] Multipath and fading
-- [ ] Doppler shift
-
-## Phase project — Antenna and propagation tool
-
-```text
-projects/
-└── project03_antenna_propagation_tool/
-```
-
-Candidate capabilities:
-
-- Antenna-gain calculations
-- Effective-aperture calculations
-- Radiation-pattern visualization
-- Free-space link calculations
-- Atmospheric-loss studies
-- Doppler studies
-
----
-
-# Phase 7 — Radar
-
-## Modules
-
-- [ ] Radar system architecture
-- [ ] Radar range equation
-- [ ] Radar cross section
-- [ ] Pulsed radar
-- [ ] Continuous-wave radar
-- [ ] FMCW radar
-- [ ] Range resolution
-- [ ] Velocity resolution
-- [ ] Ambiguity
-- [ ] Pulse compression
-- [ ] Matched filtering
-- [ ] Coherent integration
-- [ ] Range-Doppler processing
-- [ ] Detection thresholds
-- [ ] Probability of detection
-- [ ] Probability of false alarm
-- [ ] Tracking fundamentals
-
-## Phase project — Radar simulator
-
-```text
-projects/
-└── project04_radar_simulator/
-```
-
-The project should progress from a scalar range-equation calculator to sampled-signal simulation and range-Doppler processing.
-
----
-
-# Phase 8 — Orbital mechanics
-
-## Modules
-
-- [ ] Units and astronomical constants
-- [ ] Reference frames
-- [ ] Coordinate systems
-- [ ] Newtonian gravity
-- [ ] Two-body motion
-- [ ] Keplerian orbital elements
-- [ ] State-vector conversion
-- [ ] Orbit propagation
-- [ ] Ground tracks
-- [ ] Ground-station geometry
-- [ ] Visibility and elevation
-- [ ] Slant range
-- [ ] Range rate
-- [ ] Orbital Doppler
-
-## Phase project — Satellite pass predictor
-
-```text
-projects/
-└── project05_orbit_pass_predictor/
-```
-
-Candidate capabilities:
-
-- Propagate a satellite state
-- Generate a ground track
-- Determine rise and set times
-- Calculate azimuth and elevation
-- Calculate slant range and range rate
-- Estimate Doppler shift
-
----
-
-# Phase 9 — Satellite communications
-
-## Modules
-
-- [ ] Satellite-communications architecture
-- [ ] Frequency bands
-- [ ] Uplink and downlink
-- [ ] Transmit power and EIRP
-- [ ] Receive gain and `G/T`
-- [ ] Free-space and atmospheric losses
-- [ ] Carrier-to-noise density, `C/N0`
-- [ ] Energy per bit to noise density, `Eb/N0`
-- [ ] Link margins
-- [ ] Modulation and coding
-- [ ] Multiple access
-- [ ] Interference
-- [ ] Availability
-- [ ] Spectrum and coordination fundamentals
-
-## Phase project — SatCom link designer
-
-```text
-projects/
-└── project06_satcom_link_designer/
-```
-
-The project should support transparent uplink, transponder, downlink, noise, and margin calculations with clearly defined reference points.
-
----
-
-# Phase 10 — Satellite navigation
-
-## Modules
-
-- [ ] GNSS architecture
-- [ ] Time systems
-- [ ] Coordinate systems
-- [ ] Satellite ephemerides
-- [ ] PRN codes
-- [ ] Correlation
-- [ ] Signal acquisition
-- [ ] Code tracking
-- [ ] Carrier tracking
-- [ ] Pseudorange
-- [ ] Carrier phase
-- [ ] Doppler observables
-- [ ] Least-squares positioning
-- [ ] Dilution of precision
-- [ ] Satellite clock errors
-- [ ] Ionospheric and tropospheric errors
-- [ ] Multipath
-- [ ] Receiver noise
-
-## Phase project — GNSS receiver simulator
-
-```text
-projects/
-└── project07_gnss_receiver_simulator/
-```
-
-The project should progress from pseudorange geometry to noisy position estimation and receiver-processing concepts.
-
----
-
-# Phase 11 — Integrated RF and space systems
+# Phase 7 — ROS 2 Robot Modeling and Runtime
 
 ## Goal
 
-Combine the separate subject areas into an end-to-end engineering simulation.
+Move beyond simple communication demos into robot-level system integration.
 
-## Final integrated scenario
-
-1. Define a LEO satellite orbit.
-2. Propagate the satellite state.
-3. Determine ground-station visibility.
-4. Calculate azimuth, elevation, and slant range.
-5. Calculate range rate and Doppler.
-6. Build a SatCom uplink and downlink budget.
-7. Generate navigation or ranging observables.
-8. Simulate a radar or coherent ranging measurement.
-9. Estimate the system state.
-10. Compare estimated values with truth data.
-11. Quantify error and sensitivity.
-12. Document assumptions, limitations, and uncertainty.
-
-## Final deliverables
-
-- [ ] Mathematical model
-- [ ] System architecture diagram
-- [ ] Reusable Python package
-- [ ] Automated test suite
-- [ ] Reproducible notebooks
-- [ ] Input datasets
-- [ ] Generated figures
-- [ ] Engineering report
-- [ ] Technical references
-- [ ] Versioned release
+- [ ] TF2
+- [ ] frames and transforms
+- [ ] URDF
+- [ ] Xacro
+- [ ] RViz
+- [ ] launch files
+- [ ] rosbag
+- [ ] sensor messages
+- [ ] geometry messages
+- [ ] odometry concepts
+- [ ] lifecycle nodes
+- [ ] executors
+- [ ] callback groups
+- [ ] threading fundamentals
 
 ---
 
-# Repository growth policy
+# Phase 8 — Project-Based Engineering
 
-Do not create every phase directory immediately.
+## Goal
 
-Create a directory only when:
+Use projects to broaden C++ and ROS 2 skill rather than collecting isolated tutorials.
 
-- Its first lesson is ready to begin.
-- Its purpose is documented.
-- It contains meaningful content.
-- It can be committed with a descriptive message.
+Planned project families include:
 
-The expected early repository growth is:
+### C++ projects
 
-```text
-Step 1
-rf-space-systems-lab/
-├── README.md
-└── ROADMAP.md
+- [ ] command-line sensor statistics tool
+- [ ] robot state model
+- [ ] telemetry parser
+- [ ] configurable control-loop simulator
+- [ ] multithreaded producer/consumer exercise
+- [ ] reusable library with tests and CMake
 
-Step 2
-rf-space-systems-lab/
-├── README.md
-├── ROADMAP.md
-└── .gitignore
+### ROS 2 projects
 
-Step 3
-rf-space-systems-lab/
-├── README.md
-├── ROADMAP.md
-├── .gitignore
-└── 00_engineering_python/
-    └── 01_numbers_units_scientific_notation/
-        ├── README.md
-        └── lesson.ipynb
-
-Step 4
-Add the next lesson only after the first lesson is complete and committed.
-
-Later
-Add pyproject.toml, src/, tests/, projects/, and automation when the associated concepts are introduced.
-```
+- [ ] velocity publisher/monitor
+- [ ] robot safety controller
+- [ ] multi-sensor processing pipeline
+- [ ] service-based configuration node
+- [ ] action-based mission controller
+- [ ] TF/URDF robot model
+- [ ] simulated differential-drive robot
+- [ ] navigation-oriented integration project
 
 ---
 
-# Lesson completion standard
+# August 21–31, 2026 milestone
 
-A lesson is complete only when it includes:
+The immediate goal is not to claim complete mastery of professional C++ in eleven days. The goal is to create a strong foundation and reach the point where real C++ and introductory ROS 2 code can be read and written deliberately.
 
-- [ ] Learning objectives
-- [ ] Required background
-- [ ] Theory
-- [ ] Definitions of symbols and units
-- [ ] At least one hand calculation
-- [ ] Python implementation
-- [ ] Engineering experiment
-- [ ] Visualization when useful
-- [ ] Verification
-- [ ] Engineering conclusions
-- [ ] Assumptions and limitations
-- [ ] References
-- [ ] A descriptive Git commit
+See [AUGUST_2026_BOOTCAMP.md](AUGUST_2026_BOOTCAMP.md) for the day-by-day schedule.
+
+By the end of August, target capabilities are:
+
+- [ ] write small C++ programs from scratch
+- [ ] design and call functions correctly
+- [ ] understand value/reference/pointer semantics
+- [ ] reason about basic lifetime and ownership
+- [ ] use strings, vectors, classes, and common STL patterns
+- [ ] understand RAII and smart pointers
+- [ ] read lambdas and basic templates
+- [ ] organize a small `.hpp/.cpp` CMake project
+- [ ] debug simple C++ failures
+- [ ] create a ROS 2 C++ package
+- [ ] write a node, publisher, subscriber, timer, and callback
+- [ ] build a small multi-node ROS 2 exercise
 
 ---
 
-# Immediate next milestone
+# September 2026 direction
 
-The next repository addition is:
+September will be updated as August progress becomes measurable. The provisional focus is:
 
-```text
-.gitignore
-```
+- deeper STL and algorithms
+- copy/move semantics and ownership design
+- templates and generic programming
+- robust CMake
+- testing and sanitizers
+- concurrency fundamentals
+- ROS 2 services/actions/parameters/QoS
+- TF2, URDF/Xacro, launch and RViz
+- executors and callback groups
+- simulation
+- progressively larger C++ and ROS 2 projects
 
-After that, create the first lesson:
-
-```text
-00_engineering_python/
-└── 01_numbers_units_scientific_notation/
-    ├── README.md
-    └── lesson.ipynb
-```
-
-The first lesson should not require NumPy, Matplotlib, packaging, or `pytest`. It should use only basic Python numbers, variables, arithmetic, scientific notation, comments, and printed engineering results.
-
-Recommended commit sequence:
-
-```text
-Define from-scratch engineering learning roadmap
-Add Python development ignore rules
-Add numbers units and scientific notation lesson
-```
+The September schedule should remain project-driven and should be revised from actual mastery results rather than fixed prematurely.
