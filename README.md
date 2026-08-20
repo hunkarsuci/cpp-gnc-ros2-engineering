@@ -1,4 +1,4 @@
-# RF Space Systems Lab — C++ & ROS 2 Engineering Track
+ C++ & ROS 2 Engineering Track
 
 A hands-on engineering laboratory for becoming a strong C++ developer first, then applying that foundation to ROS 2 robotics and autonomous systems.
 
