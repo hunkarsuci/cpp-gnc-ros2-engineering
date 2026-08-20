@@ -1,399 +1,224 @@
-[![Notebook CI](https://github.com/hunkarsuci/rf-space-systems-lab/actions/workflows/notebook-ci.yml/badge.svg?branch=main)](https://github.com/hunkarsuci/rf-space-systems-lab/actions/workflows/notebook-ci.yml)
+# RF Space Systems Lab — C++ & ROS 2 Engineering Track
 
-# RF Space Systems Lab
+A hands-on engineering laboratory for becoming a strong C++ developer first, then applying that foundation to ROS 2 robotics and autonomous systems.
 
-A structured Python learning and engineering laboratory covering:
+The repository is intentionally learning-driven: concepts are explained, implemented, debugged, tested, and then reused in progressively larger projects.
 
-- RF engineering
-- Signals and digital signal processing
-- Antennas and propagation
-- Radar
-- Orbital mechanics
-- Satellite communications
-- Satellite navigation
-- Integrated RF and space-system simulations
+> **Core principle:** learn the language deeply enough to read unfamiliar code, write correct code from scratch, reason about memory and ownership, debug failures, and design maintainable systems before relying on ROS 2 abstractions.
 
-This repository documents the progression from engineering fundamentals to reusable, tested simulation software.
+## Current focus
 
-> **Repository principle:** notebooks explain and experiment, Python modules implement reusable engineering logic, and tests verify correctness.
+**August 21–31, 2026:** intensive C++ → ROS 2 foundation bootcamp.
 
----
+**September 2026:** project-driven expansion across modern C++, ROS 2, robotics tooling, simulation, testing, and system integration.
 
-## Project objectives
+The detailed August schedule is in [AUGUST_2026_BOOTCAMP.md](AUGUST_2026_BOOTCAMP.md). The long-term progression is in [ROADMAP.md](ROADMAP.md).
 
-The project is designed to develop both theoretical understanding and practical engineering capability.
+## Learning model
 
-Each major topic should include:
-
-1. Mathematical derivation
-2. Physical interpretation
-3. Units and dimensional analysis
-4. Hand-worked examples
-5. Python implementation
-6. Numerical experiments
-7. Visualization
-8. Verification against known results
-9. Automated tests
-10. Assumptions, limitations, and engineering discussion
-11. Technical references
-12. A final design or simulation project
-
-The target is graduate-level technical depth and disciplined software-development practice. This is an independent learning project, not an accredited degree program.
-
----
-
-## Learning sequence
+Every topic follows the same loop:
 
 ```text
-Engineering Python
-        ↓
-Engineering Mathematics
-        ↓
-Signals and Systems
-        ↓
-RF Fundamentals
-        ↓
-Digital Signal Processing
-        ↓
-Antennas and Propagation
-        ↓
- ┌──────────────┬───────────────────┬──────────────────┐
- Radar     Orbital Mechanics     Satellite Systems
-                                      ├─ SatCom
-                                      └─ SatNav
-        ↓
-Integrated RF and Space Systems
+Concept
+  ↓
+Mental model
+  ↓
+Read code
+  ↓
+Predict behavior
+  ↓
+Write code
+  ↓
+Debug broken code
+  ↓
+Refactor
+  ↓
+Mini challenge
+  ↓
+ROS 2 connection
 ```
 
-Recommended order:
-
-1. Engineering Python
-2. Engineering mathematics
-3. Signals and systems
-4. RF fundamentals
-5. Digital signal processing
-6. Antennas and propagation
-7. Radar
-8. Orbital mechanics
-9. Satellite communications
-10. Satellite navigation
-11. Integrated systems
-
----
+A topic is not considered complete merely because it has been read or watched. Completion means being able to explain it, use it without copying, identify common bugs, and recognize it inside real C++/ROS 2 code.
 
 ## Repository structure
-
-The repository will grow incrementally. New lesson directories should be added when work on them begins rather than creating many empty folders in advance.
 
 ```text
 rf-space-systems-lab/
 ├── README.md
 ├── ROADMAP.md
-├── CONTRIBUTING.md
-├── pyproject.toml
+├── AUGUST_2026_BOOTCAMP.md
 ├── .gitignore
 │
-├── 00_engineering_python/
-├── 01_engineering_mathematics/
-├── 02_signals_and_systems/
-├── 03_rf_fundamentals/
-├── 04_digital_signal_processing/
-├── 05_antennas_and_propagation/
-├── 06_radar/
-├── 07_orbital_mechanics/
-├── 08_satellite_communications/
-├── 09_satellite_navigation/
-├── 10_integrated_systems/
-│
-├── projects/
-├── src/
-│   └── rf_space_systems/
-├── tests/
-├── data/
-├── figures/
-└── references/
+├── 00_engineering_python/        # preserved legacy engineering notebooks
+├── 01_cpp_foundations/           # notebook-first C++ fundamentals
+├── 02_modern_cpp/                # ownership, STL, RAII, lambdas, templates
+├── 03_cpp_projects/              # real .cpp/.hpp/CMake projects
+├── 04_ros2_foundations/          # ROS 2 concepts and C++ packages
+└── 05_ros2_projects/             # integrated robotics projects
 ```
 
-See [ROADMAP.md](ROADMAP.md) for the planned curriculum and project milestones.
+Directories are populated only when work begins. Learning notebooks remain executable and concise; reusable code moves into normal C++ projects when the topic requires real compilation and build-system practice.
 
----
+## Phase overview
 
-## Lesson standard
+### Phase 1 — C++ Foundations
 
-Every lesson should follow a consistent engineering structure.
+Start from zero and build correct mental models for:
 
-### 1. Learning objectives
+- program structure and compilation
+- variables and fundamental types
+- operators and expressions
+- control flow
+- functions and scope
+- references and pointers
+- stack, heap, lifetime, and `const`
+- arrays, strings, and `std::vector`
 
-State what the learner should be able to explain, calculate, implement, test, and interpret.
+Primary format: Jupyter-style C++ notebooks when practical.
 
-### 2. Theory
+### Phase 2 — Modern C++
 
-Introduce the physical model and derive the relevant equations. Define every symbol and unit.
+Develop production-oriented language skills:
 
-For example:
+- classes, constructors, destructors, and composition
+- inheritance and polymorphism
+- STL containers and algorithms
+- iterators, `auto`, range-for
+- RAII and ownership
+- `std::unique_ptr`, `std::shared_ptr`, `std::weak_ptr`
+- copy/move semantics
+- lambdas and callbacks
+- templates and generic programming fundamentals
+- exceptions and defensive programming
 
-$$
-T = \frac{1}{f}
-$$
+### Phase 3 — C++ Developer Workflow
 
-$$
-\lambda = \frac{c}{f}
-$$
+Move from notebook experiments to real projects:
 
-where:
+- `.hpp` / `.cpp` separation
+- translation units
+- compiler and linker behavior
+- CMake
+- GDB / IDE debugging
+- unit testing
+- warnings, sanitizers, and static analysis
+- project organization and API design
 
-- $T$ is period in seconds
-- $f$ is frequency in hertz
-- $\lambda$ is wavelength in metres
-- $c$ is propagation speed in metres per second
+### Phase 4 — ROS 2 Foundations
 
-### 3. Hand calculation
+Apply C++ knowledge directly to ROS 2:
 
-Complete at least one numerical example before writing code.
+- workspaces and packages
+- `rclcpp::Node`
+- publishers and subscribers
+- callbacks and timers
+- messages
+- services and clients
+- actions
+- parameters
+- QoS
+- launch systems
+- TF2
+- URDF / Xacro
+- RViz and simulation tooling
 
-### 4. Python implementation
+### Phase 5 — ROS 2 Engineering Projects
 
-Start with a clear implementation in the lesson notebook. Move stable and reusable functions into:
+Build multi-node systems that require architecture, debugging, and integration rather than isolated tutorials.
+
+Examples:
+
+- sensor processing pipeline
+- robot safety controller
+- differential-drive control stack
+- TF/URDF robot model
+- service/action based mission controller
+- simulated autonomous robot application
+
+## Notebook-first, project-second
+
+Notebook-style execution is useful while learning expressions, functions, references, pointers, STL, and small classes because individual experiments can be run cell by cell.
+
+However, real C++ and ROS 2 development cannot remain notebook-only. The transition is intentional:
 
 ```text
-src/rf_space_systems/
+.ipynb experiments
+      ↓
+.cpp programs
+      ↓
+.hpp + .cpp modules
+      ↓
+CMake projects
+      ↓
+ROS 2 packages and workspaces
 ```
 
-### 5. Visualization
+## Mastery standard
 
-Plot relationships that improve engineering understanding, such as:
+For each major subject, practice should include:
 
-- Wavelength versus frequency
-- Noise power versus bandwidth
-- Free-space path loss versus distance
-- Radar received power versus range
-- Link margin versus elevation angle
-- GNSS geometry versus positioning error
+1. Concept explanation
+2. Code reading
+3. Output prediction
+4. Writing code from an empty file
+5. Bug finding
+6. Refactoring
+7. Small engineering task
+8. Review of how the same concept appears in ROS 2
 
-### 6. Engineering experiments
+Example progression:
 
-Vary parameters, predict the effect, and compare the prediction with the computed result.
-
-### 7. Verification
-
-Use assertions initially and `pytest` as reusable modules develop.
-
-```python
-from rf_space_systems.rf import frequency_to_wavelength
-
-assert frequency_to_wavelength(299_792_458.0) == 1.0
+```cpp
+void update_position(double& position, double velocity, double dt);
 ```
 
-### 8. Engineering conclusions
+leads naturally to understanding code such as:
 
-Summarize the principal relationships, assumptions, sensitivities, and practical implications.
-
----
-
-## Software architecture
-
-The project separates explanation, reusable implementation, and verification.
-
-```text
-Lesson notebooks
-    Explain theory, derivations, examples, and experiments
-
-src/rf_space_systems/
-    Contains reusable engineering functions and simulation components
-
-tests/
-    Verifies numerical behavior, units, limits, and reference cases
+```cpp
+subscription_ = this->create_subscription<sensor_msgs::msg::LaserScan>(
+    "/scan",
+    10,
+    [this](const sensor_msgs::msg::LaserScan::SharedPtr msg)
+    {
+        process_scan(*msg);
+    });
 ```
 
-Example:
+The goal is to understand every important C++ construct in that ROS 2 code rather than treating it as framework-specific syntax to memorize.
 
-```text
-03_rf_fundamentals/03_db_dbm_dbw/lesson.ipynb
-src/rf_space_systems/units.py
-tests/test_units.py
-```
+## Development environment
 
----
+Target environment:
 
-## Initial lesson
-
-The first planned lesson is:
-
-```text
-00_engineering_python/
-└── 01_numbers_units_scientific_notation/
-    └── lesson.ipynb
-```
-
-It will introduce Python numeric fundamentals through:
-
-- Frequency
-- Period
-- Distance
-- Wavelength
-- Time
-- Power
-- Scientific notation
-- SI prefixes
-- Unit conversion
-
----
-
-## Planned capstone projects
-
-```text
-projects/
-├── project01_rf_calculator/
-├── project02_signal_processing_lab/
-├── project03_antenna_propagation_tool/
-├── project04_radar_simulator/
-├── project05_orbit_pass_predictor/
-├── project06_satcom_link_designer/
-└── project07_gnss_receiver_simulator/
-```
-
-Mature capstones may later become independent portfolio repositories:
-
-- `rf-link-budget-tool`
-- `radar-range-doppler-simulator`
-- `satellite-pass-predictor`
-- `satcom-link-design-tool`
-- `gnss-positioning-simulator`
-
----
-
-## Getting started
-
-### Prerequisites
-
-- Python 3.11 or newer
+- Linux
+- GCC / Clang
+- CMake
 - Git
-- A Python virtual environment
-- JupyterLab or another Jupyter-compatible environment
+- VS Code or another C++ IDE
+- Jupyter-compatible C++ kernel when useful
+- ROS 2 distribution compatible with the installed Linux distribution
 
-### Clone the repository
-
-```bash
-git clone https://github.com/hunkarsuci/rf-space-systems-lab.git
-cd rf-space-systems-lab
-```
-
-### Create a virtual environment
-
-Linux and macOS:
-
-```bash
-python -m venv .venv
-source .venv/bin/activate
-```
-
-Windows PowerShell:
-
-```powershell
-python -m venv .venv
-.venv\Scripts\Activate.ps1
-```
-
-### Install the project
-
-```bash
-python -m pip install --upgrade pip
-python -m pip install -e ".[dev]"
-```
-
-### Run tests
-
-```bash
-pytest
-```
-
-### Start JupyterLab
-
-```bash
-jupyter lab
-```
-
----
-
-## Engineering conventions
-
-### Units
-
-- Use SI units internally unless a model explicitly requires another convention.
-- State units in variable names, docstrings, tables, and plots when ambiguity is possible.
-- Convert user-facing units at system boundaries.
-- Perform dimensional checks during derivations and reviews.
-
-### Numerical work
-
-- Document constants and their sources.
-- State model assumptions.
-- Check limiting cases.
-- Compare results with hand calculations or published reference values.
-- Use tolerances for floating-point tests.
-
-### Code quality
-
-- Use type hints for reusable functions.
-- Write docstrings that describe equations, parameters, units, and return values.
-- Keep notebooks readable and reproducible.
-- Avoid copying reusable logic across notebooks.
-- Add tests whenever code moves into `src/`.
-
----
+Exact ROS 2 installation instructions will be selected after confirming the Linux distribution and version.
 
 ## Git workflow
 
-Use descriptive commits that identify the engineering contribution.
+Use small, descriptive commits tied to a learning milestone or project capability.
 
-Good examples:
-
-```text
-Add frequency period and wavelength fundamentals
-Implement and test decibel conversion functions
-Add free-space path-loss parameter study
-Implement pulsed-radar range equation
-```
-
-Avoid vague messages such as:
+Examples:
 
 ```text
-update
-changes
-fix
+Add C++ function and scope exercises
+Add pointer and reference notebook
+Implement RAII ownership examples
+Create first CMake C++ project
+Add ROS 2 publisher subscriber exercise
+Implement robot safety controller
 ```
 
-Suggested phase tags:
+## Legacy engineering material
 
-```bash
-git tag -a python-foundations-v1 -m "Complete engineering Python foundations"
-git tag -a rf-foundations-v1 -m "Complete RF foundations phase"
-git tag -a dsp-foundations-v1 -m "Complete DSP foundations phase"
-```
-
-See [CONTRIBUTING.md](CONTRIBUTING.md) for branch, commit, testing, and review conventions.
-
----
-
-## Repository status
-
-This repository is under active development. Immediate priorities are:
-
-- Establish the expanded RF and space-systems identity
-- Implement the first engineering-Python lesson
-- Create the reusable package foundation
-- Add initial unit tests
-- Build the curriculum incrementally
-- Preserve technical references and engineering assumptions
-
----
-
-## Scope note
-
-Radar is not inherently a space-system discipline. It is included because it shares the repository's RF, signal-processing, antenna, propagation, detection, and estimation foundations.
-
----
+The existing `00_engineering_python/` material is preserved as earlier engineering-study work. It is not part of the active August C++/ROS 2 track, but may later be reused for RF, DSP, simulation, or robotics data-analysis projects.
 
 ## License
 
-A license has not yet been selected. Add a `LICENSE` file before distributing the project or accepting external contributions.
+MIT License. See [LICENSE](LICENSE).
