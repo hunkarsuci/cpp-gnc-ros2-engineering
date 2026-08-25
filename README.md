@@ -1,224 +1,112 @@
- C++ & ROS 2 Engineering Track
+# Modern C++ for GNC, Robotics & ROS 2
 
-A hands-on engineering laboratory for becoming a strong C++ developer first, then applying that foundation to ROS 2 robotics and autonomous systems.
+A structured, project-driven curriculum for learning modern C++ and applying it
+to guidance, navigation and control (GNC), robotics, simulation, and ROS 2
+software.
 
-The repository is intentionally learning-driven: concepts are explained, implemented, debugged, tested, and then reused in progressively larger projects.
+The curriculum begins with the C++ compilation and memory model, progresses
+through professional engineering practices, and finishes with production-style
+GNC and autonomous-system projects.
 
-> **Core principle:** learn the language deeply enough to read unfamiliar code, write correct code from scratch, reason about memory and ownership, debug failures, and design maintainable systems before relying on ROS 2 abstractions.
+## Objectives
 
-## Current focus
+By completing this repository, the learner should be able to:
 
-**August 21–31, 2026:** intensive C++ → ROS 2 foundation bootcamp.
+- read, write, debug, and test modern C++20;
+- reason about object lifetime, ownership, copy/move behavior, and performance;
+- build reusable libraries with CMake;
+- use Eigen for numerical and GNC software;
+- implement simulation, control, estimation, and guidance components;
+- design deterministic, testable engineering software;
+- build ROS 2 systems using C++ and `rclcpp`;
+- validate C++ algorithms against Python reference implementations; and
+- deliver a documented production-style GNC or robotics capstone.
 
-**September 2026:** project-driven expansion across modern C++, ROS 2, robotics tooling, simulation, testing, and system integration.
-
-The detailed August schedule is in [AUGUST_2026_BOOTCAMP.md](AUGUST_2026_BOOTCAMP.md). The long-term progression is in [ROADMAP.md](ROADMAP.md).
-
-## Learning model
-
-Every topic follows the same loop:
-
-```text
-Concept
-  ↓
-Mental model
-  ↓
-Read code
-  ↓
-Predict behavior
-  ↓
-Write code
-  ↓
-Debug broken code
-  ↓
-Refactor
-  ↓
-Mini challenge
-  ↓
-ROS 2 connection
-```
-
-A topic is not considered complete merely because it has been read or watched. Completion means being able to explain it, use it without copying, identify common bugs, and recognize it inside real C++/ROS 2 code.
-
-## Repository structure
+## Curriculum structure
 
 ```text
-rf-space-systems-lab/
-├── README.md
-├── ROADMAP.md
-├── AUGUST_2026_BOOTCAMP.md
-├── .gitignore
-│
-├── 00_engineering_python/        # preserved legacy engineering notebooks
-├── 01_cpp_foundations/           # notebook-first C++ fundamentals
-├── 02_modern_cpp/                # ownership, STL, RAII, lambdas, templates
-├── 03_cpp_projects/              # real .cpp/.hpp/CMake projects
-├── 04_ros2_foundations/          # ROS 2 concepts and C++ packages
-└── 05_ros2_projects/             # integrated robotics projects
+curriculum/
+├── 01_cpp_language/       # Topics 01–18: language and modern C++ foundations
+├── 02_cpp_engineering/    # Topics 19–23: build, debugging, testing, quality
+├── 03_gnc_cpp/            # Topics 24–31: numerical methods and GNC algorithms
+├── 04_advanced_systems/   # Topics 32–38: architecture, performance, real time
+├── 05_ros2_gnc/           # Topics 39–46: ROS 2 and GNC system integration
+└── 06_portfolio/          # Topics 47–50: progressively larger portfolio work
 ```
 
-Directories are populated only when work begins. Learning notebooks remain executable and concise; reusable code moves into normal C++ projects when the topic requires real compilation and build-system practice.
+The complete sequence and completion criteria are listed in
+[ROADMAP.md](ROADMAP.md).
 
-## Phase overview
+## How each topic will be developed
 
-### Phase 1 — C++ Foundations
-
-Start from zero and build correct mental models for:
-
-- program structure and compilation
-- variables and fundamental types
-- operators and expressions
-- control flow
-- functions and scope
-- references and pointers
-- stack, heap, lifetime, and `const`
-- arrays, strings, and `std::vector`
-
-Primary format: Jupyter-style C++ notebooks when practical.
-
-### Phase 2 — Modern C++
-
-Develop production-oriented language skills:
-
-- classes, constructors, destructors, and composition
-- inheritance and polymorphism
-- STL containers and algorithms
-- iterators, `auto`, range-for
-- RAII and ownership
-- `std::unique_ptr`, `std::shared_ptr`, `std::weak_ptr`
-- copy/move semantics
-- lambdas and callbacks
-- templates and generic programming fundamentals
-- exceptions and defensive programming
-
-### Phase 3 — C++ Developer Workflow
-
-Move from notebook experiments to real projects:
-
-- `.hpp` / `.cpp` separation
-- translation units
-- compiler and linker behavior
-- CMake
-- GDB / IDE debugging
-- unit testing
-- warnings, sanitizers, and static analysis
-- project organization and API design
-
-### Phase 4 — ROS 2 Foundations
-
-Apply C++ knowledge directly to ROS 2:
-
-- workspaces and packages
-- `rclcpp::Node`
-- publishers and subscribers
-- callbacks and timers
-- messages
-- services and clients
-- actions
-- parameters
-- QoS
-- launch systems
-- TF2
-- URDF / Xacro
-- RViz and simulation tooling
-
-### Phase 5 — ROS 2 Engineering Projects
-
-Build multi-node systems that require architecture, debugging, and integration rather than isolated tutorials.
-
-Examples:
-
-- sensor processing pipeline
-- robot safety controller
-- differential-drive control stack
-- TF/URDF robot model
-- service/action based mission controller
-- simulated autonomous robot application
-
-## Notebook-first, project-second
-
-Notebook-style execution is useful while learning expressions, functions, references, pointers, STL, and small classes because individual experiments can be run cell by cell.
-
-However, real C++ and ROS 2 development cannot remain notebook-only. The transition is intentional:
+Every topic begins with an empty `README.md). Content is added lecture by
+lecture, and supporting directories are created only when needed:
 
 ```text
-.ipynb experiments
-      ↓
-.cpp programs
-      ↓
-.hpp + .cpp modules
-      ↓
-CMake projects
-      ↓
-ROS 2 packages and workspaces
+topic_name/
+├── README.md       # concepts, mental models, notes, and mastery checklist
+├── examples/       # small working demonstrations
+├── exercises/      # learner implementations
+├── bug_hunts/      # intentionally broken programs
+├── include/        # public headers when the topic needs a library
+├── src/            # source files
+├── tests/          # automated tests
+└── CMakeLists.txt  # build definition when compilation is required
 ```
 
-## Mastery standard
+Not every topic needs every directory. Early subjects may contain only a README
+and a few source files; engineering and portfolio topics will use full
+project layouts.
 
-For each major subject, practice should include:
+## Learning method
 
-1. Concept explanation
-2. Code reading
-3. Output prediction
-4. Writing code from an empty file
-5. Bug finding
-6. Refactoring
-7. Small engineering task
-8. Review of how the same concept appears in ROS 2
+Each topic follows the same progression:
 
-Example progression:
+1. Build the conceptual and runtime mental model.
+2. Read and explain working code.
+3. Predict program behavior before execution.
+4. Implement examples from an empty file.
+5. Diagnose compiler, linker, runtime, and logic failures.
+6. Test and refactor the implementation.
+7. Apply the concept to an engineering or GNC problem.
+8. Identify how the concept appears in ROS 2 or production software.
 
-```cpp
-void update_position(double& position, double velocity, double dt);
-```
+A topic is complete when its concepts can be explained and applied without
+copying an existing solution.
 
-leads naturally to understanding code such as:
+## Toolchain
 
-```cpp
-subscription_ = this->create_subscription<sensor_msgs::msg::LaserScan>(
-    "/scan",
-    10,
-    [this](const sensor_msgs::msg::LaserScan::SharedPtr msg)
-    {
-        process_scan(*msg);
-    });
-```
+The target language is C++20. The primary toolchain consists of:
 
-The goal is to understand every important C++ construct in that ROS 2 code rather than treating it as framework-specific syntax to memorize.
+- GCC or Clang;
+- CMake and CTest;
+- GDB or LLDB;
+- GoogleTest;
+- Eigen;
+- compiler warnings and sanitizers;
+- clang-format and clang-tidy;
+- Python for reference models, validation, visualization, and Monte Carlo work;
+- ROS 2 with `ament_cmake`, `colcon`, and `rclcpp`.
 
-## Development environment
+See [REQUIREMENTS.md](REQUIREMENTS.md) for environment requirements.
+`requirements.txt` contains only optional Python analysis dependencies.
 
-Target environment:
+## Repository policy
 
-- Linux
-- GCC / Clang
-- CMake
-- Git
-- VS Code or another C++ IDE
-- Jupyter-compatible C++ kernel when useful
-- ROS 2 distribution compatible with the installed Linux distribution
+- Source code, tests, and documentation evolve one curriculum topic at a time.
+- Build products and generated results are not committed.
+- C++ examples should compile with warnings enabled.
+- Numerical algorithms require automated tests and stated tolerances.
+- Portfolio code should separate interfaces, implementations, configuration,
+  and verification.
+- Python prototypes and C++ implementations should use shared test vectors when
+  numerical equivalence matters.
 
-Exact ROS 2 installation instructions will be selected after confirming the Linux distribution and version.
+## Status
 
-## Git workflow
-
-Use small, descriptive commits tied to a learning milestone or project capability.
-
-Examples:
-
-```text
-Add C++ function and scope exercises
-Add pointer and reference notebook
-Implement RAII ownership examples
-Create first CMake C++ project
-Add ROS 2 publisher subscriber exercise
-Implement robot safety controller
-```
-
-## Legacy engineering material
-
-The existing `00_engineering_python/` material is preserved as earlier engineering-study work. It is not part of the active August C++/ROS 2 track, but may later be reused for RF, DSP, simulation, or robotics data-analysis projects.
+The curriculum skeleton is complete. Lecture content has intentionally not been
+pre-filled; each topic will be developed and reviewed in sequence.
 
 ## License
 
-MIT License. See [LICENSE](LICENSE).
+This repository is licensed under the MIT License. See [LICENSE](LICENSE).

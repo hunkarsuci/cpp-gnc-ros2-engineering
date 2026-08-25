@@ -1,511 +1,288 @@
-# C++ & ROS 2 Engineering Roadmap
+# Modern C++ for GNC, Robotics & ROS 2 Roadmap
 
-This roadmap starts from zero C++ assumptions and targets two connected outcomes:
+This roadmap contains the complete 50-topic progression. Topic numbers are
+stable: supporting material may grow, but the curriculum order remains
+traceable.
 
-1. Become a capable modern C++ developer who can read, write, debug, and structure non-trivial software.
-2. Apply that foundation to ROS 2 robotics systems without treating framework syntax as magic.
+## Track 1 — C++ Language and Modern C++
 
-The repository remains engineering-oriented, but the active track is now C++ → ROS 2. Existing Python/RF material is preserved as legacy study material and may later be integrated into robotics, signal-processing, and simulation projects.
+Goal: understand the language, compilation model, memory behavior, ownership,
+and the standard-library tools needed to write deliberate modern C++.
 
----
+- [ ] **01 — C++ Program Structure & Compilation [CORE]**  
+  Source files, headers, `main()`, compiler and linker roles, warnings,
+  terminal compilation, executables, and compile-time versus run-time behavior.
 
-## Learning philosophy
+- [ ] **02 — Types, Variables & Memory Model [CORE]**  
+  Fundamental types, signed and unsigned values, integer and floating-point
+  behavior, `bool`, `char`, `const`, initialization, conversions,
+  narrowing, scope, lifetime, and an introduction to stack and heap storage.
 
-```text
-Understand the concept
-        ↓
-Build a memory/runtime mental model
-        ↓
-Read unfamiliar code
-        ↓
-Predict behavior
-        ↓
-Write from scratch
-        ↓
-Debug broken code
-        ↓
-Refactor and explain trade-offs
-        ↓
-Use the same idea inside ROS 2
-```
+- [ ] **03 — Operators & Control Flow [CORE]**  
+  Arithmetic, comparison and logical operators, `if`, `switch`, loops,
+  `break`, `continue`, range-for, and maintainable control-flow design.
 
-A lesson is complete only when the learner can explain the idea, use it independently, recognize typical bugs, and identify the same construct in real C++ or ROS 2 source code.
+- [ ] **04 — Functions [CORE]**  
+  Declarations, definitions, parameters, returns, value/reference semantics,
+  const references, overloading, default arguments, inline functions, and API
+  design.
 
----
+- [ ] **05 — References & Pointers [CRITICAL]**  
+  References, addresses, pointers, dereferencing, `nullptr`, limited pointer
+  arithmetic, const forms, lifetime hazards, and dangling pointers/references.
 
-# Phase 0 — Development environment
+- [ ] **06 — Arrays, Strings & Containers [CORE]**  
+  Raw arrays, `std::array`, `std::vector`, `std::string`, indexing,
+  bounds, iteration, contiguous storage, resizing, and container selection.
 
-## Goal
+- [ ] **07 — Structs, Enums & Engineering Data Models [CORE]**  
+  Structures, `enum`, `enum class`, nested data, state representation,
+  sensor records, and configuration models.
 
-Establish a reproducible Linux C++ development workflow before adding framework complexity.
+- [ ] **08 — Classes & Object-Oriented C++ [CORE]**  
+  Classes, access control, constructors, destructors, member functions, const
+  members, encapsulation, composition, selective inheritance, polymorphism,
+  and virtual functions.
 
-## Topics
+- [ ] **09 — RAII & Resource Management [CRITICAL]**  
+  Resource lifetime, ownership, constructors/destructors, deterministic
+  cleanup, and the role of RAII in reliable C++.
 
-- [ ] Confirm Linux distribution and version
-- [ ] Install GCC or Clang
-- [ ] Install GDB
-- [ ] Install CMake
-- [ ] Install Git
-- [ ] Configure VS Code or preferred IDE
-- [ ] Configure Jupyter-compatible C++ execution when practical
-- [ ] Compile and run a basic `.cpp` program from the terminal
-- [ ] Understand compiler warnings
-- [ ] Understand the edit → compile → run → debug loop
+- [ ] **10 — Smart Pointers [CORE]**  
+  `std::unique_ptr`, `std::shared_ptr`, `std::weak_ptr`, ownership
+  semantics, avoiding cycles, and recognizing when no dynamic allocation is
+  needed.
 
-## Completion criteria
+- [ ] **11 — Copy & Move Semantics [CRITICAL]**  
+  Copy/move construction and assignment, lvalues, rvalues, `std::move`,
+  object lifetime, Rule of Zero, and Rule of Five.
 
-- A C++ program can be compiled from the command line.
-- Breakpoints and variable inspection work in a debugger.
-- Notebook-style C++ cells can be used for early experiments if the selected environment supports them reliably.
+- [ ] **12 — STL Containers [CORE]**  
+  Vector, array, deque, limited list usage, ordered and unordered maps/sets,
+  complexity, invalidation, and selecting containers from requirements.
 
----
+- [ ] **13 — Iterators & STL Algorithms [CORE]**  
+  Iterator models, begin/end, find, sort, transform, accumulate, predicates,
+  and algorithm-oriented problem solving.
 
-# Phase 1 — C++ Foundations
+- [ ] **14 — Lambdas & Functional-Style C++ [MODERN C++]**  
+  Lambda syntax, captures, predicates, callbacks, algorithm integration,
+  and function objects.
 
-## Goal
+- [ ] **15 — Modern C++ Language Features [CORE]**  
+  `auto`, `constexpr`, structured bindings, `std::optional`,
+  `std::variant`, tuples, spans, modern initialization, and avoiding
+  unnecessary legacy patterns.
 
-Learn the language from first principles while building correct execution and memory mental models.
+- [ ] **16 — Templates & Generic Programming [CORE → ADVANCED]**  
+  Function and class templates, type parameters, compile-time polymorphism,
+  specialization intuition, introductory concepts, and generic numerical code.
 
-## Module 1.1 — Program structure and fundamental types
+- [ ] **17 — Error Handling & Robust Code [ENGINEERING]**  
+  Exceptions, standard/custom exceptions, error codes, assertions, validation,
+  defensive programming, and environments where exceptions are inappropriate.
 
-- [ ] `main`
-- [ ] statements and expressions
-- [ ] comments
-- [ ] `std::cout`
-- [ ] integers
-- [ ] floating-point types
-- [ ] booleans
-- [ ] characters
-- [ ] `std::string`
-- [ ] initialization styles
-- [ ] `const`
-- [ ] arithmetic, comparison, and logical operators
-- [ ] basic type conversions
+- [ ] **18 — File I/O & Configuration [ENGINEERING]**  
+  Streams, text, CSV, introductory binary I/O, paths, configuration,
+  serialization concepts, and telemetry/results handling.
 
-### Exercises
+### Track 1 capability gate
 
-- velocity, distance, and time calculations
-- battery threshold logic
-- unit conversion
-- numeric-output prediction
+- Build and explain multi-file C++20 programs.
+- Reason correctly about values, references, pointers, ownership, and lifetime.
+- Select standard containers and algorithms intentionally.
+- Design small classes and APIs with const correctness.
+- Diagnose common compile, link, runtime, and undefined-behavior failures.
 
----
+## Track 2 — Professional C++ Engineering
 
-## Module 1.2 — Control flow
+Goal: turn language knowledge into reproducible, testable, maintainable
+software.
 
-- [ ] `if` / `else`
-- [ ] `switch`
-- [ ] `for`
-- [ ] `while`
-- [ ] range-based `for`
-- [ ] `break` and `continue`
-- [ ] nested control flow
+- [ ] **19 — CMake & Build Systems [CRITICAL]**  
+  Targets, libraries, executables, include paths, linking, dependencies,
+  configurations, multi-directory projects, and reusable libraries.
 
-### Engineering applications
+- [ ] **20 — Project Structure [ENGINEERING]**  
+  Header/source separation, namespaces, interfaces, dependency direction,
+  modularity, and conventional include/src/tests/config/examples layouts.
 
-- battery-state decisions
-- sensor-threshold checks
-- actuator command limits
-- simple state-machine logic
-
----
+- [ ] **21 — Debugging [CORE]**  
+  Compiler, linker, runtime and logic errors; segmentation faults; breakpoints;
+  stack traces; variable inspection; and GDB/IDE workflows.
 
-## Module 1.3 — Functions and scope
+- [ ] **22 — Testing in C++ [CORE]**  
+  GoogleTest, unit and integration tests, fixtures, parameterized cases,
+  numerical tolerances, regression testing, and GNC verification fundamentals.
 
-- [ ] function declaration and definition
-- [ ] return types
-- [ ] parameters and arguments
-- [ ] `void`
-- [ ] local variables
-- [ ] scope
-- [ ] pass by value
-- [ ] pass by reference
-- [ ] pass by const reference
-- [ ] function overloading
-- [ ] default arguments where appropriate
+- [ ] **23 — Static Analysis & Code Quality [PROFESSIONAL]**  
+  Strict warnings, AddressSanitizer, UndefinedBehaviorSanitizer, clang-tidy,
+  formatting, review, and modern C++ quality practices.
 
-### Mastery examples
+### Track 2 capability gate
 
-```cpp
-double calculate_distance(double velocity, double time);
+- Create a reusable target-based CMake project.
+- Build and run tests from a clean checkout.
+- Debug failures with a debugger and sanitizers.
+- Apply formatting, static analysis, and warning policies consistently.
 
-void update_position(double& position, double velocity, double dt);
+## Track 3 — GNC and Numerical C++
 
-void print_name(const std::string& name);
-```
+Goal: implement numerically sound, reusable GNC and simulation components.
 
----
+- [ ] **24 — Eigen Library [GNC CORE]**  
+  Fixed/dynamic vectors and matrices, arithmetic, decompositions, linear
+  systems, norms, transforms, blocks, alignment, and performance basics.
 
-# Phase 2 — Memory, Lifetime, and Core C++
+- [ ] **25 — Numerical Computing in C++ [GNC CORE]**  
+  Floating-point behavior, tolerances, integration, finite differences,
+  stability, numerical linear algebra, and solver architecture.
 
-## Goal
-
-Understand what C++ objects are, where they live, who owns them, and when they stop being valid.
-
-## Module 2.1 — References and pointers
-
-- [ ] addresses
-- [ ] `&` address-of operator
-- [ ] references
-- [ ] pointer variables
-- [ ] dereference operator `*`
-- [ ] `nullptr`
-- [ ] pointer versus reference semantics
-- [ ] pointer-to-const versus const-pointer
-- [ ] common pointer bugs
+- [ ] **26 — Coordinate Frames & Rotations in C++ [GNC CORE]**  
+  Vectors, DCMs, Euler angles, rotation matrices, quaternions, Eigen quaternion
+  tools, body/inertial/navigation frames, and frame-safe APIs.
 
-## Module 2.2 — Stack, heap, and lifetime
-
-- [ ] automatic storage duration
-- [ ] dynamic storage duration
-- [ ] object lifetime
-- [ ] dangling pointers/references
-- [ ] why returning addresses of local variables is invalid
-- [ ] introductory `new` / `delete` for understanding legacy code
-- [ ] why RAII is preferred
-
-## Module 2.3 — Arrays, strings, and vectors
-
-- [ ] C-style arrays for language understanding
-- [ ] `std::array`
-- [ ] `std::string`
-- [ ] `std::vector`
-- [ ] indexing
-- [ ] bounds awareness
-- [ ] iteration
-- [ ] references to container elements
-
----
-
-# Phase 3 — Object-Oriented C++
-
-## Goal
-
-Design and reason about stateful components that will later map naturally to ROS 2 nodes and system components.
-
-## Module 3.1 — Structures and classes
-
-- [ ] `struct`
-- [ ] `class`
-- [ ] objects
-- [ ] public/private/protected
-- [ ] data members
-- [ ] member functions
-- [ ] constructors
-- [ ] initializer lists
-- [ ] `this`
-- [ ] `const` member functions
-- [ ] encapsulation
-- [ ] composition
-
-## Module 3.2 — Destruction and object semantics
-
-- [ ] destructors
-- [ ] object lifetime inside classes
-- [ ] copy construction
-- [ ] copy assignment
-- [ ] move construction
-- [ ] move assignment
-- [ ] Rule of Zero
-- [ ] Rule of Three/Five as explanatory models
-
-## Module 3.3 — Inheritance and polymorphism
-
-- [ ] base and derived classes
-- [ ] virtual functions
-- [ ] `override`
-- [ ] pure virtual functions
-- [ ] abstract interfaces
-- [ ] virtual destructors
-- [ ] composition versus inheritance
-
----
-
-# Phase 4 — Modern C++ and STL
-
-## Goal
-
-Move from language syntax to idiomatic, maintainable C++.
-
-## Module 4.1 — Standard library containers and algorithms
-
-- [ ] `std::vector`
-- [ ] `std::array`
-- [ ] `std::map`
-- [ ] `std::unordered_map`
-- [ ] `std::set`
-- [ ] iterators
-- [ ] range-based loops
-- [ ] `<algorithm>` fundamentals
-- [ ] `std::find`
-- [ ] `std::sort`
-- [ ] `std::transform`
-- [ ] `std::accumulate`
-
-## Module 4.2 — Type deduction and expressive syntax
-
-- [ ] `auto`
-- [ ] `using`
-- [ ] aliases
-- [ ] scoped enums
-- [ ] structured bindings
-- [ ] namespaces
-
-## Module 4.3 — RAII and smart pointers
-
-- [ ] resource ownership
-- [ ] RAII
-- [ ] `std::unique_ptr`
-- [ ] `std::make_unique`
-- [ ] `std::shared_ptr`
-- [ ] `std::make_shared`
-- [ ] reference counting
-- [ ] `std::weak_ptr`
-- [ ] ownership trade-offs
-
-## Module 4.4 — Lambdas and callbacks
-
-- [ ] lambda syntax
-- [ ] capture lists
-- [ ] `[this]`
-- [ ] capture by value/reference
-- [ ] callable objects
-- [ ] function pointers conceptually
-- [ ] `std::function`
-- [ ] callback design
-
-## Module 4.5 — Templates
-
-- [ ] function templates
-- [ ] class templates conceptually
-- [ ] template type parameters
-- [ ] generic APIs
-- [ ] reading nested template syntax
-
----
-
-# Phase 5 — Professional C++ Development Workflow
-
-## Goal
-
-Build normal multi-file applications with the same tools and practices used by ROS 2 packages.
-
-## Module 5.1 — Compilation model
-
-- [ ] preprocessor
-- [ ] headers
-- [ ] declarations versus definitions
-- [ ] translation units
-- [ ] object files
-- [ ] linker
-- [ ] include guards / `#pragma once`
-- [ ] common linker errors
-
-## Module 5.2 — Project structure
-
-```text
-project/
-├── CMakeLists.txt
-├── include/
-│   └── project/
-│       └── robot.hpp
-├── src/
-│   ├── robot.cpp
-│   └── main.cpp
-└── tests/
-```
-
-## Module 5.3 — CMake
-
-- [ ] `cmake_minimum_required`
-- [ ] `project`
-- [ ] `add_executable`
-- [ ] `add_library`
-- [ ] `target_include_directories`
-- [ ] `target_link_libraries`
-- [ ] target-based CMake
-- [ ] out-of-source builds
-
-## Module 5.4 — Debugging and correctness
-
-- [ ] debugger workflow
-- [ ] breakpoints
-- [ ] stepping
-- [ ] stack traces
-- [ ] compiler warnings
-- [ ] sanitizers
-- [ ] assertions
-- [ ] unit-test fundamentals
-- [ ] undefined behavior awareness
-
----
-
-# Phase 6 — ROS 2 Foundations
-
-## Goal
-
-Learn ROS 2 through already-understood C++ concepts.
-
-## Module 6.1 — ROS 2 architecture
-
-- [ ] ROS graph
-- [ ] nodes
-- [ ] topics
-- [ ] messages
-- [ ] services
-- [ ] actions
-- [ ] parameters
-- [ ] discovery
-- [ ] DDS overview
-
-## Module 6.2 — Workspace and package workflow
-
-- [ ] ROS 2 workspace layout
-- [ ] package structure
-- [ ] `colcon`
-- [ ] environment sourcing
-- [ ] `ament_cmake`
-- [ ] dependencies
-- [ ] `package.xml`
-- [ ] ROS 2 CLI
-
-## Module 6.3 — `rclcpp` nodes
-
-- [ ] deriving from `rclcpp::Node`
-- [ ] node constructors
-- [ ] logging
-- [ ] timers
-- [ ] publishers
-- [ ] subscribers
-- [ ] callback signatures
-- [ ] message shared pointers
-
-### C++ mapping exercise
-
-For code like:
-
-```cpp
-subscription_ = this->create_subscription<sensor_msgs::msg::LaserScan>(
-    "/scan",
-    10,
-    [this](const sensor_msgs::msg::LaserScan::SharedPtr msg)
-    {
-        process_scan(*msg);
-    });
-```
-
-be able to explain:
-
-- [ ] member assignment
-- [ ] `this`
-- [ ] template argument
-- [ ] nested namespaces
-- [ ] lambda capture
-- [ ] callback parameter
-- [ ] shared ownership
-- [ ] pointer dereference
-
-## Module 6.4 — ROS 2 communication patterns
-
-- [ ] publisher/subscriber design
-- [ ] service/client
-- [ ] actions
-- [ ] timers
-- [ ] parameters
-- [ ] QoS fundamentals
-
----
-
-# Phase 7 — ROS 2 Robot Modeling and Runtime
-
-## Goal
-
-Move beyond simple communication demos into robot-level system integration.
-
-- [ ] TF2
-- [ ] frames and transforms
-- [ ] URDF
-- [ ] Xacro
-- [ ] RViz
-- [ ] launch files
-- [ ] rosbag
-- [ ] sensor messages
-- [ ] geometry messages
-- [ ] odometry concepts
-- [ ] lifecycle nodes
-- [ ] executors
-- [ ] callback groups
-- [ ] threading fundamentals
-
----
-
-# Phase 8 — Project-Based Engineering
-
-## Goal
-
-Use projects to broaden C++ and ROS 2 skill rather than collecting isolated tutorials.
-
-Planned project families include:
-
-### C++ projects
-
-- [ ] command-line sensor statistics tool
-- [ ] robot state model
-- [ ] telemetry parser
-- [ ] configurable control-loop simulator
-- [ ] multithreaded producer/consumer exercise
-- [ ] reusable library with tests and CMake
-
-### ROS 2 projects
-
-- [ ] velocity publisher/monitor
-- [ ] robot safety controller
-- [ ] multi-sensor processing pipeline
-- [ ] service-based configuration node
-- [ ] action-based mission controller
-- [ ] TF/URDF robot model
-- [ ] simulated differential-drive robot
-- [ ] navigation-oriented integration project
-
----
-
-# August 21–31, 2026 milestone
-
-The immediate goal is not to claim complete mastery of professional C++ in eleven days. The goal is to create a strong foundation and reach the point where real C++ and introductory ROS 2 code can be read and written deliberately.
-
-See [AUGUST_2026_BOOTCAMP.md](AUGUST_2026_BOOTCAMP.md) for the day-by-day schedule.
-
-By the end of August, target capabilities are:
-
-- [ ] write small C++ programs from scratch
-- [ ] design and call functions correctly
-- [ ] understand value/reference/pointer semantics
-- [ ] reason about basic lifetime and ownership
-- [ ] use strings, vectors, classes, and common STL patterns
-- [ ] understand RAII and smart pointers
-- [ ] read lambdas and basic templates
-- [ ] organize a small `.hpp/.cpp` CMake project
-- [ ] debug simple C++ failures
-- [ ] create a ROS 2 C++ package
-- [ ] write a node, publisher, subscriber, timer, and callback
-- [ ] build a small multi-node ROS 2 exercise
-
----
-
-# September 2026 direction
-
-September will be updated as August progress becomes measurable. The provisional focus is:
-
-- deeper STL and algorithms
-- copy/move semantics and ownership design
-- templates and generic programming
-- robust CMake
-- testing and sanitizers
-- concurrency fundamentals
-- ROS 2 services/actions/parameters/QoS
-- TF2, URDF/Xacro, launch and RViz
-- executors and callback groups
-- simulation
-- progressively larger C++ and ROS 2 projects
-
-The September schedule should remain project-driven and should be revised from actual mastery results rather than fixed prematurely.
+- [ ] **27 — Dynamics Models in C++ [GNC CORE]**  
+  State vectors, derivatives, translational and rotational dynamics,
+  forces/moments, actuator models, disturbances, and six-DOF models.
+
+- [ ] **28 — Simulation Engine Architecture [GNC CORE]**  
+  Fixed-step propagation, model interfaces, simulation clocks, multi-rate
+  scheduling, history logging, and deterministic execution.
+
+- [ ] **29 — Control Algorithms in C++ [GNC CORE]**  
+  PID, state feedback, LQR, observers, discrete control, saturation,
+  anti-windup, controller classes, and reusable control interfaces.
+
+- [ ] **30 — Estimation Algorithms in C++ [GNC CORE]**  
+  Complementary filters, KF/EKF, covariance, propagation, measurement updates,
+  numerical stability, and sensor fusion.
+
+- [ ] **31 — Advanced GNC Algorithms in C++ [ADVANCED]**  
+  LQR/LQG, robust and adaptive methods, nonlinear control, trajectory
+  generation, optimization-based control, and MPC architecture.
+
+### Track 3 capability gate
+
+- Implement and test numerical algorithms with explicit tolerances.
+- Represent frames and rotations without hidden convention changes.
+- Build deterministic simulation, controller, and estimator interfaces.
+- Validate C++ output against trusted reference data.
+
+## Track 4 — Advanced and Flight-Oriented Systems
+
+Goal: understand the architecture, performance, concurrency, determinism, and
+assurance concerns of production engineering software.
+
+- [ ] **32 — Interfaces & Abstract Architecture [PROFESSIONAL]**  
+  Abstract interfaces, interchangeable controller/estimator implementations,
+  dependency boundaries, and testable component design.
+
+- [ ] **33 — Design Patterns for Engineering Software [SELECTIVE]**  
+  Strategy, Factory, Observer, dependency injection, interfaces, and
+  composition over inheritance—used only when they solve a concrete problem.
+
+- [ ] **34 — Memory Layout & Performance [ADVANCED C++]**  
+  Storage, cache behavior, contiguous memory, allocation, copies/moves, cache
+  locality, data-oriented design, benchmarking, and profiling.
+
+- [ ] **35 — Multithreading & Concurrency [ADVANCED]**  
+  Threads, mutexes, locks, atomics, races, deadlocks, condition variables,
+  producer/consumer systems, and thread safety.
+
+- [ ] **36 — Real-Time Software Concepts [FLIGHT/ROBOTICS]**  
+  Hard/soft real time, deadlines, latency, jitter, scheduling, allocation and
+  blocking concerns, deterministic execution, and worst-case-time intuition.
+
+- [ ] **37 — Embedded-Oriented C++ Concepts [AEROSPACE]**  
+  Resource constraints, fixed-size storage, allocation avoidance,
+  deterministic memory, low-level interfaces, hardware boundaries, and
+  embedded design principles.
+
+- [ ] **38 — Safety-Critical C++ Awareness [AEROSPACE]**  
+  Undefined behavior, determinism, defensive coding, MISRA/AUTOSAR awareness,
+  certification mindset, traceability, and verification concepts.
+
+### Track 4 capability gate
+
+- Define interchangeable components through narrow interfaces.
+- Measure performance instead of guessing.
+- identify concurrency and real-time hazards.
+- Explain how assurance constraints change ordinary C++ design choices.
+
+## Track 5 — ROS 2 and GNC Integration
+
+Goal: deploy already-understood C++ and GNC components as robust ROS 2 systems.
+
+- [ ] **39 — ROS 2 Fundamentals with C++ [CRITICAL ROBOTICS]**  
+  Packages, `ament_cmake`, nodes, publishers, subscribers, services, actions,
+  parameters, launch, and custom interfaces.
+
+- [ ] **40 — rclcpp [ROS 2 CORE]**  
+  Node classes, communication, callbacks, timers, executors, callback groups,
+  QoS, parameters, and lifecycle nodes when appropriate.
+
+- [ ] **41 — ROS 2 tf2 with C++ [ROS/GNC]**  
+  Transform trees, quaternion/frame handling, timestamps, sensor-frame
+  conversion, and body/world/navigation integration.
+
+- [ ] **42 — ROS 2 Sensor & Estimation Nodes [ROS/GNC]**  
+  IMU/GNSS interfaces, KF/EKF nodes, timestamps, multi-rate processing, and
+  QoS-aware estimator pipelines.
+
+- [ ] **43 — ROS 2 Control & Guidance Nodes [ROS/GNC]**  
+  Controller nodes, trajectory tracking, waypoint guidance, state feedback,
+  command generation, and actuator interfaces.
+
+- [ ] **44 — ROS 2 Component Architecture [ADVANCED ROS]**  
+  Composition, executors, intra-process communication, lifecycle, performance,
+  component boundaries, and production architecture.
+
+- [ ] **45 — Python ↔ C++ Interoperability [VERY USEFUL]**  
+  Python prototypes, production C++, numerical equivalence, shared data,
+  mixed-language ROS nodes, and optional pybind11.
+
+- [ ] **46 — GNC Software Verification [PROFESSIONAL]**  
+  Truth data, Monte Carlo testing, numerical regression, performance and
+  boundary tests, fault cases, and Python-reference/C++ comparison.
+
+### Track 5 capability gate
+
+- Build and inspect a multi-package ROS 2 C++ workspace.
+- Select communication patterns and QoS from system requirements.
+- Handle transforms, timestamps, rates, and lifecycle explicitly.
+- Verify ROS-wrapped algorithms independently of ROS communication code.
+
+## Track 6 — Portfolio Projects
+
+Goal: integrate the curriculum into documented systems that demonstrate
+engineering depth rather than isolated tutorial completion.
+
+- [ ] **47 — C++ GNC Library Project [PORTFOLIO]**  
+  A reusable Eigen/CMake/GoogleTest library containing math, frames, dynamics,
+  control, estimation, guidance, sensors, and simulation modules.
+
+- [ ] **48 — High-Performance Six-DOF Simulator [PORTFOLIO]**  
+  C++ dynamics, actuators, sensors, noise, control, estimation, logging,
+  automated tests, profiling, and Python visualization.
+
+- [ ] **49 — ROS 2 Autonomous Vehicle Architecture [PORTFOLIO]**  
+  Simulation → sensors → estimation → navigation → guidance → control →
+  actuators, with explicit node and component boundaries.
+
+- [ ] **50 — Production-Style GNC / Flight Software Capstone [FINAL]**  
+  Modern C++, Eigen, CMake, testing, ROS 2, real-time awareness, estimation,
+  control, guidance, sensor simulation, Monte Carlo analysis, profiling,
+  requirements, traceability, and complete documentation.
+
+## Final completion standard
+
+The roadmap is complete only when the learner can:
+
+- explain major design and ownership decisions;
+- reproduce clean builds and tests on a fresh environment;
+- trace requirements into implementations and verification evidence;
+- compare Python reference algorithms with production C++ results;
+- diagnose numerical, memory, concurrency, and ROS integration failures;
+- justify performance and real-time decisions with measurements; and
+- present the final system as a coherent engineering portfolio.

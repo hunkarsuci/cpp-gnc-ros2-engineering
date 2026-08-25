@@ -1,0 +1,9 @@
+# Python tools for numerical prototyping, validation, and visualization.
+# C++, Eigen, CMake, GoogleTest, and ROS 2 are documented in REQUIREMENTS.md.
+numpy
+scipy
+pandas
+matplotlib
+jupyterlab
+ipykernel
+pytest
