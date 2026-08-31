@@ -95,7 +95,6 @@ int main()
 
     std::cout << "accumulated: " << accumulated << '\n';
     std::cout << "expected: " << 1.0 << '\n';
-    
 
 
     return 0;
