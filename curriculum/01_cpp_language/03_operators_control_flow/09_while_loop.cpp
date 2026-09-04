@@ -40,9 +40,7 @@ int main()
 
         ++simulationStep;
 
-        double time{
-            simulationStep * dt
-        };
+        double time{simulationStep * dt};
 
         std::cout << "step: "
                   << simulationStep
