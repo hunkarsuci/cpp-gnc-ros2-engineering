@@ -44,7 +44,7 @@ lecture, and supporting directories are created only when needed:
 
 ```text
 topic_name/
-├── README.md       # concepts, mental models, notes, and mastery checklist
+├── README.md       # concepts, mental models, and notes
 ├── examples/       # small working demonstrations
 ├── exercises/      # learner implementations
 ├── bug_hunts/      # intentionally broken programs
